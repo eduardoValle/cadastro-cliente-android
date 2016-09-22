@@ -40,9 +40,9 @@ public class BancoController {
         db.close();
 
         if (resultado ==-1)
-            return "Erro ao inserir registro";
+            return "Erro ao inserir registro!!";
         else
-            return "Registro Inserido com sucesso";
+            return "Registro inserido com sucesso!!";
     }
 
     public Cursor carregaDados(){
@@ -73,8 +73,9 @@ public class BancoController {
         return cursor;
     }
 
-    public void alteraRegistro(Map<String,String> dados){ContentValues valores;
+    public String alteraRegistro(Map<String,String> dados){ContentValues valores;
 
+        long resultado;
         String where;
         db = banco.getWritableDatabase();
         where = CriaBanco.ID + "=" + dados.get(CriaBanco.ID);
@@ -90,14 +91,26 @@ public class BancoController {
         valores.put(CriaBanco.ESTADO, dados.get(CriaBanco.ESTADO));
         valores.put(CriaBanco.CATEGORIA, dados.get(CriaBanco.CATEGORIA));
 
-        db.update(CriaBanco.TABELA,valores,where,null);
+        resultado = db.update(CriaBanco.TABELA,valores,where,null);
         db.close();
+
+        if (resultado ==-1)
+            return "Erro ao alterar registro!!";
+        else
+            return "Registro alterado com sucesso!!";
     }
 
-    public void deletaRegistro(int id){
+    public String deletaRegistro(int id){
+
+        long resultado;
         String where = CriaBanco.ID + "=" + id;
         db = banco.getReadableDatabase();
-        db.delete(CriaBanco.TABELA,where,null);
+        resultado = db.delete(CriaBanco.TABELA,where,null);
         db.close();
+
+        if (resultado ==-1)
+            return "Erro ao apagar registro!!";
+        else
+            return "Registro apagado com sucesso!!";
     }
 }

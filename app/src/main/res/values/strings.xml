@@ -9,9 +9,9 @@
     <string name="cidade">Cidade:</string>
     <string name="estado">Estados:</string>
     <string name="categoria">Categoria:</string>
-    <string name="salvar">Enviar</string>
+    <string name="salvar">Salvar</string>
     <string name="cancelar">Calcelar</string>
-    <string name="deletar">DELETAR</string>
+    <string name="deletar">Apagar</string>
 
     <string name="novoCliente">Novo cliente</string>
     <string name="consultarCliente">Consultar cliente</string>
