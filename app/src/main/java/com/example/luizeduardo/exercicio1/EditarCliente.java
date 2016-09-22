@@ -13,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -58,8 +59,6 @@ public class EditarCliente extends Activity {
         ArrayAdapter listaCategoria = ArrayAdapter.createFromResource(this, R.array.categorias, android.R.layout.simple_spinner_item);
         categoria.setAdapter(listaCategoria);
 
-
-
         cursor = crud.carregaDadoById(Integer.parseInt(codigo));
         nome.setText(cursor.getString(cursor.getColumnIndexOrThrow(CriaBanco.NOME)));
         email.setText(cursor.getString(cursor.getColumnIndexOrThrow(CriaBanco.EMAIL)));
@@ -80,7 +79,8 @@ public class EditarCliente extends Activity {
                 dadosCliente.put("estado", estados.getSelectedItem().toString());
                 dadosCliente.put("categoria", categoria.getSelectedItem().toString());
 
-                crud.alteraRegistro(dadosCliente);
+                String resultado = crud.alteraRegistro(dadosCliente);
+                Toast.makeText(getApplicationContext(), resultado, Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(EditarCliente.this, ListaClientes.class);
                 startActivity(intent);
                 finish();
@@ -91,7 +91,8 @@ public class EditarCliente extends Activity {
         deletar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                crud.deletaRegistro(Integer.parseInt(codigo));
+                String resultado = crud.deletaRegistro(Integer.parseInt(codigo));
+                Toast.makeText(getApplicationContext(), resultado, Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(EditarCliente.this, ListaClientes.class);
                 startActivity(intent);
                 finish();

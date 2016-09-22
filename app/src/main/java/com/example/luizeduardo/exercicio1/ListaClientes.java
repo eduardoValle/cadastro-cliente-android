@@ -29,7 +29,7 @@ public class ListaClientes extends Activity{
         int[] idViews = new int[] {R.id.idCLiente, R.id.nomeCliente};
 
         SimpleCursorAdapter adaptador = new SimpleCursorAdapter(getBaseContext(),
-                R.layout.modelo_linsta, cursor, nomeCampos, idViews, 0);
+                R.layout.modelo_lista, cursor, nomeCampos, idViews, 0);
         lista = (ListView)findViewById(R.id.listView);
         lista.setAdapter(adaptador);
 
