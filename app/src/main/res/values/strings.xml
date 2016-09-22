@@ -1,0 +1,55 @@
+<resources>
+    <string name="app_name">Exercício 1</string>
+    <string name="name">Nome:</string>
+    <string name="email">E-Mail:</string>
+    <string name="telefone">Telefone:</string>
+    <string name="dados">CPF/CNPJ:</string>
+    <string name="rua">Rua:</string>
+    <string name="bairro">Bariro:</string>
+    <string name="cidade">Cidade:</string>
+    <string name="estado">Estados:</string>
+    <string name="categoria">Categoria:</string>
+    <string name="salvar">Enviar</string>
+    <string name="cancelar">Calcelar</string>
+    <string name="deletar">DELETAR</string>
+
+    <string name="novoCliente">Novo cliente</string>
+    <string name="consultarCliente">Consultar cliente</string>
+
+    <string-array name="categorias">
+        <item>Pessoa Física</item>
+        <item>Pessoa Jurídica</item>
+        <item>Org. Não Governamental</item>
+    </string-array>
+
+    <string-array name="estados">
+        <item/>
+        <item>Acre</item>
+        <item>Alagoas</item>
+        <item>Amapá</item>
+        <item>Amazonas</item>
+        <item>Bahia</item>
+        <item>Ceará</item>
+        <item>Distrito Federal</item>
+        <item>Espírito Santo</item>
+        <item>Goiás</item>
+        <item>Maranhão</item>
+        <item>Mato Grosso</item>
+        <item>Mato Grosso do Sul</item>
+        <item>Minas Gerais</item>
+        <item>Pará</item>
+        <item>Paraíba</item>
+        <item>Paraná</item>
+        <item>Pernambuco</item>
+        <item>Piauí</item>
+        <item>Rio de Janeiro</item>
+        <item>Rio Grande do Norte</item>
+        <item>Rio Grande do Sul</item>
+        <item>Rondônia</item>
+        <item>Roraima</item>
+        <item>Santa Catarina</item>
+        <item>São Paulo</item>
+        <item>Sergipe</item>
+        <item>Tocantis</item>
+    </string-array>
+</resources>
