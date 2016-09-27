@@ -18,7 +18,6 @@ import android.widget.Toast;
 import java.util.HashMap;
 import java.util.Map;
 
-
 public class EditarCliente extends Activity {
 
     private EditText nome, email, telefone, dados, rua, bairo, cidade;
@@ -79,11 +78,15 @@ public class EditarCliente extends Activity {
                 dadosCliente.put("estado", estados.getSelectedItem().toString());
                 dadosCliente.put("categoria", categoria.getSelectedItem().toString());
 
-                String resultado = crud.alteraRegistro(dadosCliente);
-                Toast.makeText(getApplicationContext(), resultado, Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(EditarCliente.this, ListaClientes.class);
-                startActivity(intent);
-                finish();
+                if(!checarCampos()) {
+                    String resultado = crud.alteraRegistro(dadosCliente);
+                    Toast.makeText(getApplicationContext(), resultado, Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(EditarCliente.this, ListaClientes.class);
+                    startActivity(intent);
+                    finish();
+                }else{
+
+                }
             }
         });
 
@@ -98,5 +101,14 @@ public class EditarCliente extends Activity {
                 finish();
             }
         });
+    }
+
+    public boolean checarCampos(){
+
+        if(nome.getText().toString() == "" || email.getText().toString() == "" || telefone.getText().toString() == ""){
+            return true;
+        }else{
+            return false;
+        }
     }
 }

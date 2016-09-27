@@ -10,9 +10,8 @@
     <string name="estado">Estados:</string>
     <string name="categoria">Categoria:</string>
     <string name="salvar">Salvar</string>
-    <string name="cancelar">Calcelar</string>
+    <string name="limpar">Limpar campos</string>
     <string name="deletar">Apagar</string>
-
     <string name="novoCliente">Novo cliente</string>
     <string name="consultarCliente">Consultar cliente</string>
 

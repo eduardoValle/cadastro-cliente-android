@@ -14,11 +14,17 @@ public class BancoController {
 
     private SQLiteDatabase db;
     private CriaBanco banco;
+    private Logs log;
 
     public BancoController(Context context){
         banco = new CriaBanco(context);
     }
 
+    /**
+     * Insere um cliente no banco de dados.
+     * @param dados Hash Map contento os dados do cliente.
+     * @return Mensagem de resposta da oparação.
+     */
     public String inserirDados(Map<String,String> dados){
 
         ContentValues valores;
@@ -42,9 +48,14 @@ public class BancoController {
         if (resultado ==-1)
             return "Erro ao inserir registro!!";
         else
+            //  log.escrever(dados.get(CriaBanco.NOME), "E");
             return "Registro inserido com sucesso!!";
     }
 
+    /**
+     * Pega no banco todos os clientes cadastrados.
+     * @return todos os clientes cadastrados.
+     */
     public Cursor carregaDados(){
         Cursor cursor;
         String[] campos = {CriaBanco.ID, CriaBanco.NOME};
@@ -58,6 +69,11 @@ public class BancoController {
         return cursor;
     }
 
+    /**
+     * Procura no banco o cliente do id passado como parâmetro.
+     * @param id do cliente a procurar.
+     * @return dados do cliente procurado, se exixtir.
+     */
     public Cursor carregaDadoById(int id){
         Cursor cursor;
         String[] campos =  {CriaBanco.ID, CriaBanco.NOME, CriaBanco.EMAIL, CriaBanco.TELEFONE, CriaBanco.DADOS,
@@ -68,11 +84,17 @@ public class BancoController {
 
         if(cursor!=null){
             cursor.moveToFirst();
+            //  log.escrever(Integer.toString(id), "L");
         }
         db.close();
         return cursor;
     }
 
+    /**
+     * Altera o registro do cliente do id passado como parâmetro.
+     * @param dados Hash Map contento os dados do cliente.
+     * @return Mensagem de resposta da oparação.
+     */
     public String alteraRegistro(Map<String,String> dados){ContentValues valores;
 
         long resultado;
@@ -97,9 +119,15 @@ public class BancoController {
         if (resultado ==-1)
             return "Erro ao alterar registro!!";
         else
+            //  log.escrever(dados.get(CriaBanco.ID), "A");
             return "Registro alterado com sucesso!!";
     }
 
+    /**
+     * Exclui o cliente do id passado como parâmetro.
+     * @param id id do cliente a excluir.
+     * @return Mensagem de resposta da oparação.
+     */
     public String deletaRegistro(int id){
 
         long resultado;
@@ -111,6 +139,7 @@ public class BancoController {
         if (resultado ==-1)
             return "Erro ao apagar registro!!";
         else
+            // log.escrever(Integer.toString(id), "D");
             return "Registro apagado com sucesso!!";
     }
 }

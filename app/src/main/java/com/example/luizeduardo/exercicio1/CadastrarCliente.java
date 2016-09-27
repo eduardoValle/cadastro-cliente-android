@@ -13,15 +13,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
-
 import java.util.HashMap;
 import java.util.Map;
 
-public class CadastrarCliente extends AppCompatActivity implements View.OnClickListener {
+public class CadastrarCliente extends AppCompatActivity {
 
     private EditText txtNome, txtEmail, txtTelefone, txtDados, txtRua, txtBairo, txtCidade;
     private Spinner txtEstados, txtCategoria;
-    private Button btnEnviar, btnCancelar;
+    private Button btnSalvar, btnLimpar;
     private Map<String,String> dados = new HashMap<String, String>();
 
     @Override
@@ -38,66 +37,79 @@ public class CadastrarCliente extends AppCompatActivity implements View.OnClickL
         txtBairo = (EditText) findViewById(R.id.txtBairro);
         txtCidade = (EditText) findViewById(R.id.txtCidade);
 
-        /*********************************************************************
-         * CRIANDO AQUI A LISTA DE ESTADOS VINDOS DIRETO DO AQUIVO strings.xml*
-         *********************************************************************/
+        /**
+         * CRIANDO AQUI Os COMBOBOX DE ESTADOS VINDOS DIRETO DO AQUIVO strings.xml
+         */
 
-        // Lista de estados
+        // ComboBox de estados
         txtEstados = (Spinner) findViewById(R.id.txtEstados);
         ArrayAdapter listaEstados = ArrayAdapter.createFromResource(this, R.array.estados, android.R.layout.simple_spinner_item);
         txtEstados.setAdapter(listaEstados);
 
-        // Lista de categorias
+        // ComboBox de categorias
         txtCategoria = (Spinner) findViewById(R.id.txtCategoria);
         ArrayAdapter listaCategoria = ArrayAdapter.createFromResource(this, R.array.categorias, android.R.layout.simple_spinner_item);
         txtCategoria.setAdapter(listaCategoria);
 
 
-        // INICIANDO OS BOTÕES CRIADOS NO ARQUIVO activity_main.xml
-        btnEnviar = (Button) findViewById(R.id.btnEnviar);
-        btnEnviar.setOnClickListener(this);
+        /**
+         * INICIANDO OS BOTÕES CRIADOS E APLICANDO EVENTOS.
+         */
 
-        btnCancelar = (Button) findViewById(R.id.btnCancelar);
-        btnCancelar.setOnClickListener(new LimparCampos());
+        // Botão de salvar dados.
+        btnSalvar = (Button) findViewById(R.id.btnSalvar);
+        btnSalvar.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+
+                BancoController crud = new BancoController(getBaseContext());
+
+                dados.put("nome", txtNome.getText().toString());
+                dados.put("email", txtEmail.getText().toString());
+                dados.put("telefone", txtTelefone.getText().toString());
+                dados.put("dados",  txtDados.getText().toString());
+                dados.put("rua", txtRua.getText().toString());
+                dados.put("bairro", txtBairo.getText().toString());
+                dados.put("cidade", txtCidade.getText().toString());
+                dados.put("estado", txtEstados.getSelectedItem().toString());
+                dados.put("categoria", txtCategoria.getSelectedItem().toString());
+
+                if(!checarCampos()) {
+                    String resultado = crud.inserirDados(dados);
+                    Toast.makeText(getApplicationContext(), resultado, Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(getBaseContext(), ListaClientes.class);
+                    startActivity(intent);
+                }else{
+                    Toast.makeText(getApplicationContext(), "Os campos de NOME, EMAIL e TELEFONE não podem estar em branco.", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+
+        // Botão de salvar dados.
+        btnLimpar = (Button) findViewById(R.id.btnLimpar);
+        btnLimpar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                txtNome.setText("");
+                txtEmail.setText("");
+                txtTelefone.setText("");
+                txtDados.setText("");
+                txtRua.setText("");
+                txtBairo.setText("");
+                txtCidade.setText("");
+            }
+        });
     }
 
     /**
-     * Prepara os dados dos campos e grava no banco de dados.
+     * Checa se os campos de NOME, EMAIL e telefone estão em branco.
+     * @return true se estão em branco, false se não estão
      */
-    public void onClick(View v) {
+    public boolean checarCampos(){
 
-        BancoController crud = new BancoController(getBaseContext());
-
-        dados.put("nome", txtNome.getText().toString());
-        dados.put("email", txtEmail.getText().toString());
-        dados.put("telefone", txtTelefone.getText().toString());
-        dados.put("dados",  txtDados.getText().toString());
-        dados.put("rua", txtRua.getText().toString());
-        dados.put("bairro", txtBairo.getText().toString());
-        dados.put("cidade", txtCidade.getText().toString());
-        dados.put("estado", txtEstados.getSelectedItem().toString());
-        dados.put("categoria", txtCategoria.getSelectedItem().toString());
-
-        String resultado = crud.inserirDados(dados);
-        Toast.makeText(getApplicationContext(), resultado, Toast.LENGTH_LONG).show();
-        Intent intent = new Intent(getBaseContext(), ListaClientes.class);
-        startActivity(intent);
-    }
-
-    /**
-     * Classe respnsável por limpar os dados dos campos.
-     */
-    class LimparCampos implements View.OnClickListener {
-
-        @Override
-        public void onClick(View v) {
-            txtNome.setText("");
-            txtEmail.setText("");
-            txtTelefone.setText("");
-            txtDados.setText("");
-            txtRua.setText("");
-            txtBairo.setText("");
-            txtCidade.setText("");
+        if(txtNome.getText().toString() == "" || txtEmail.getText().toString() == "" || txtTelefone.getText().toString() == ""){
+            return true;
+        }else{
+            return false;
         }
     }
 }
