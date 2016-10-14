@@ -5,8 +5,14 @@
     android:columnCount="2"
     android:rowCount="2" >
 
+    <ImageView
+        android:id="@+id/imagemView"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        />
+
     <TextView
-        android:id="@+id/idCLiente"
+        android:id="@+id/nomeCliente"
         android:layout_width="0dip"
         android:layout_gravity="fill_horizontal"
         android:layout_height="wrap_content"
@@ -15,11 +21,10 @@
         android:text="ID" />
 
     <TextView
-        android:id="@+id/nomeCliente"
+        android:id="@+id/nomeCategotia"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="5dp"
         android:text="TITULO" />
-
 </GridLayout>

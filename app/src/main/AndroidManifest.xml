@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.luizeduardo.exercicio1">
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:label="@string/cadastro_cliente"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".PaginaInicial">
@@ -14,9 +14,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".CadastrarCliente"/>
-        <activity android:name=".ListaClientes"/>
-        <activity android:name=".EditarCliente"/>
+        <activity
+            android:name=".CadastrarCliente"
+            android:label="@string/cadastro_cliente"
+            />
+        <activity
+            android:name=".ListaClientes"
+            android:label="@string/consultarCliente"
+            />
+        <activity
+            android:name=".EditarCliente"
+            android:label="@string/edicao_cliente"
+            />
     </application>
-
 </manifest>
