@@ -18,7 +18,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="10dp"
-        android:text="ID" />
+        android:text="Nome" />
 
     <TextView
         android:id="@+id/nomeCategotia"
@@ -26,5 +26,5 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="5dp"
-        android:text="TITULO" />
+        android:text="Categoria" />
 </GridLayout>

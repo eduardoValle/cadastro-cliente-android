@@ -54,6 +54,7 @@ public class AdapterListView extends BaseAdapter{
     }
 
     public View getView(int position, View view, ViewGroup parent) {
+
         //Pega o item de acordo com a posção.
         ItemListView item = itens.get(position);
 
@@ -64,7 +65,6 @@ public class AdapterListView extends BaseAdapter{
         ((TextView) view.findViewById(R.id.nomeCliente)).setText(item.getNome());
         ((TextView) view.findViewById(R.id.nomeCategotia)).setText(item.getCategoria());
         ((ImageView) view.findViewById(R.id.imagemView)).setImageResource(item.getIconeRid());
-
         return view;
     }
 }

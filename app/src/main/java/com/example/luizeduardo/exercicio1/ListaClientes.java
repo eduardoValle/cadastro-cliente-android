@@ -16,7 +16,6 @@ import java.util.ArrayList;
 
 public class ListaClientes extends Activity {
     private ListView listView;
-    private AdapterListView adapterListView;
     private ArrayList<ItemListView> itens;
 
     @Override
@@ -28,7 +27,6 @@ public class ListaClientes extends Activity {
 
         //Pega a referencia do ListView
         listView = (ListView) findViewById(R.id.listView);
-        //Define o Listener quando alguem clicar no item.
 
         //Criamos nossa lista que preenchera o ListView
         itens = new ArrayList<ItemListView>();
@@ -40,7 +38,7 @@ public class ListaClientes extends Activity {
         final Cursor cursor = crud.carregaDados();
         cursor.moveToFirst();
 
-        // Criando a lista de clientes.
+        // Criando a lista de clientes.d
         while (cursor.isAfterLast() == false) {
             itens.add(new ItemListView(cursor.getString(cursor.getColumnIndexOrThrow(CriaBanco.NOME)),
                     cursor.getString(cursor.getColumnIndexOrThrow(CriaBanco.EMAIL)),
@@ -48,11 +46,8 @@ public class ListaClientes extends Activity {
             cursor.moveToNext();
         }
 
-        //Cria o adapter
-        adapterListView = new AdapterListView(this, itens);
-
         //Define o Adapter
-        listView.setAdapter(adapterListView);
+        listView.setAdapter(new AdapterListView(this, itens));
         //Cor quando a lista é selecionada para ralagem.
         listView.setCacheColorHint(Color.TRANSPARENT);
 
